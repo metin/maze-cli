@@ -1,4 +1,6 @@
 require "maze/cli/version"
+require "maze/cli/cell"
+require "maze/cli/board"
 
 module Maze
   module Cli
