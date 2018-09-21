@@ -1,6 +1,6 @@
 module Maze
   class Board
-    attr_accessor :start, :end
+    attr_accessor :start, :finish
     attr_accessor :width, :height, :board
 
     def initialize(w, h)
@@ -8,7 +8,7 @@ module Maze
       @height = h
       @board = [] #Array.new(w) { Array.new(h) }
       @start = Cell.new(0, 0)
-      @end = Cell.new(w - 1, h - 1)
+      @finish = Cell.new(w, h)
     end
 
     def generate
@@ -23,6 +23,7 @@ module Maze
     def display
       # Each cell is printed as 9 places on console
       0.upto(height) do |y|
+
         # Print top line and
         if y == 0
           0.upto(width) do |x|
@@ -37,7 +38,7 @@ module Maze
           if x == 0
             print board[x][y].left == 1 ? "|" : " "
           end
-          print board[x][y].val
+          print print_cell(board[x][y])
           print board[x][y].right == 1 ? "|" : " "
         end
         puts
@@ -48,6 +49,16 @@ module Maze
           print " "
         end
         puts
+      end
+    end
+
+    def print_cell(current_cell)
+      if current_cell == start
+        "s"
+      elsif current_cell == finish  
+        "f"
+      else
+        current_cell.val
       end
     end
 
