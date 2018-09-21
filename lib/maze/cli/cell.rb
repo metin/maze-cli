@@ -11,6 +11,10 @@ module Maze
       @x = x
       @y = y
     end
+
+    def ==(other)
+      return x == other.x && y == other.y
+    end
   end
 end
   
