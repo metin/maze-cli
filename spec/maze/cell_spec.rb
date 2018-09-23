@@ -9,7 +9,7 @@ RSpec.describe Maze::Cell do
     expect(cell.left).to be 4
   end
 
-  describe "#==" do
+  describe "==" do
     it "is the same when x and y are the same" do
       other_cell = Maze::Cell.new(1, 2)
       expect(cell == other_cell).to be true
@@ -26,5 +26,21 @@ RSpec.describe Maze::Cell do
     end
 
   end  
+
+  describe :neighbours do
+    let(:board) { Maze::Board.new(10, 6) }
+    describe "when cell is in not in the edge" do
+      let(:cell) { Maze::Cell.new(1 , 2, board) }
+      it "has all 4 neighbours" do
+        expect(cell.neighbours.any?{|c| c == nil}).to be false
+      end
+    end
+    describe "when cell is at the north edge" do
+      let(:cell) { Maze::Cell.new(1 , 0, board) }
+      it "has all 3 neighbours" do
+        expect(cell.neighbours.select{|c| c != nil}.size).to eq 3
+      end
+    end
+  end
 
 end

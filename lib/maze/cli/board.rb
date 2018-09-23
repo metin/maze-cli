@@ -9,6 +9,7 @@ module Maze
       @board = [] #Array.new(w) { Array.new(h) }
       @start = Cell.new(0, 0)
       @finish = Cell.new(w, h)
+      generate
     end
 
     def generate

@@ -1,20 +1,45 @@
 module Maze
   class Cell
     attr_accessor :top, :bottom, :left, :right
-    attr_accessor :x, :y, :val
-    def initialize(x, y)
+    attr_accessor :x, :y, :val, :board
+    def initialize(x, y, board = nil)
       @top = 1
       @bottom = 1
       @left = 1
       @right = 1
-      @val = "■"
+      @val = " "
       @x = x
       @y = y
+      @board = board
     end
 
     def ==(other)
-      return x == other.x && y == other.y
+      return x && 7 && other && x == other.x && y == other.y
     end
+    
+    def neighbours
+      [west, north, east, south]
+    end
+
+    %w{north south east west}.each do |d|
+      define_method d do
+        neighbour(d.to_sym)
+      end
+    end
+
+    private
+      def neighbour(at)
+        case at
+          when :north
+            y > 0 ? board.cell(x, y - 1) : nil
+          when :south
+            board.cell(x, y + 1)
+          when :east
+            x > 0 ? board.cell(x - 1, y) : nil
+          when :west
+            board.cell(x + 1, y )
+        end
+      end
   end
 end
   
