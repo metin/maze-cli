@@ -79,13 +79,14 @@ end
 
 maze = Maze::Board.new(options.width, options.height)
 cell = maze.cell(options.start.x, options.start.y)
+maze.current = cell
 
 if options.finish.x
   maze.specified_x = options.finish.x
 elsif options.finish.y
   maze.specified_y = options.finish.y
 end
-
+maze.display
 maze.solve(cell)
 maze.display
 
