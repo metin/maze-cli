@@ -13,6 +13,7 @@ before_script:
 rubocop:
   script:
   - bundle exec rubocop
+  allow_failure: true
 
 rspec:
   script:
