@@ -15,11 +15,11 @@ module Maze
     end
 
     def ==(other)
-      return x && y && other && x == other.x && y == other.y
+      x && y && other && x == other.x && y == other.y
     end
 
     def unvisited_neighbours
-      neighbours.select{|n| n && !n.visited }
+      neighbours.select { |n| n && !n.visited }
     end
 
     def to_s
@@ -28,11 +28,11 @@ module Maze
 
     def display
       if discarded
-        "x"
+        'x'
       elsif visited
-        "■"
+        '■'
       else
-        " "
+        ' '
       end
     end
 
