@@ -23,7 +23,7 @@ module Maze
     end
 
     def to_s
-      "x: #{x} y: #{y} visited: #{visited} walls: [#{left}, #{top}, #{right}, #{bottom}]"
+      "x: #{x} y: #{y} visited: #{visited} edges: [#{left}, #{top}, #{right}, #{bottom}]"
     end
 
     def display

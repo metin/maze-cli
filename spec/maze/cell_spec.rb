@@ -24,7 +24,12 @@ RSpec.describe Maze::Cell do
       other_cell = Maze::Cell.new(1, 3)
       expect(cell == other_cell).to be false
     end
+  end
 
+  describe "to_s" do
+    it "describes cell" do
+      expect(cell.to_s).to eq %{x: #{cell.x} y: #{cell.y} visited: #{cell.visited} edges: [#{cell.left}, #{cell.top}, #{cell.right}, #{cell.bottom}]}
+    end
   end
 
   describe :neighbours do
