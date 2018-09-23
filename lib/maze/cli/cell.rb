@@ -62,4 +62,3 @@ module Maze
       end
   end
 end
-  

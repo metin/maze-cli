@@ -1,6 +1,6 @@
 RSpec.describe Maze::Board do
-  let(:with) { 10 }
-  let(:height) { 6 }
+  let(:with) { 40 }
+  let(:height) { 26 }
   let(:maze) { Maze::Board.new(with, height) }
   it "exists " do
     expect(maze).not_to be nil
@@ -18,7 +18,7 @@ RSpec.describe Maze::Board do
     it "returns nil if not in the bounds" do
       expect(maze.cell(with, height)).to eq(nil)
     end
-    
+
     it "returns nil if not in the bounds" do
       expect(maze.cell(2, 200)).to eq(nil)
     end
@@ -37,6 +37,24 @@ RSpec.describe Maze::Board do
     end
   end
 
+  describe :solve do
+    it "solves a maze randomly for any given starting point" do
+      start = maze.cell(20, 13)
+      maze.solve(start)
+      maze.display
+    end
+  end
 
+  describe :solved? do
+    it "is not solved initally" do
+      expect(maze.solved?).to be false
+    end
+
+    it "is solved if finish has a value" do
+      start = maze.cell(4,3)
+      maze.solve(start)
+      expect(maze.solved?).to be true
+    end
+  end
 
 end
