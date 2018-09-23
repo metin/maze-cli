@@ -63,4 +63,19 @@ RSpec.describe Maze::Cell do
     end
   end
 
+  describe :display do
+    describe "when it is discarded" do
+      before { cell.discarded = true }
+      it "displays as x" do
+        expect(cell.display).to eq "x"
+      end
+    end
+    describe "when it is visited" do
+      before { cell.visited = true }
+      it "displays as ·" do
+        expect(cell.display).to eq "·"
+      end
+    end
+  end
+
 end

@@ -24,9 +24,18 @@ module Maze
     end
 
     def to_s
-      "x: #{x} y: #{y} visited: #{visited} walls: [#{left},#{top}, #{right}, #{bottom}]"
+      "x: #{x} y: #{y} visited: #{visited} walls: [#{left}, #{top}, #{right}, #{bottom}]"
     end
 
+    def display
+      if discarded
+        "x"
+      elsif visited
+        "·"
+      else
+        " "
+      end
+    end
 
     def neighbours
       [west, north, east, south]
