@@ -1,7 +1,7 @@
 module Maze
   class Board
-    attr_accessor :start, :finish, :current
-    attr_accessor :width, :height, :board, :stack
+    attr_accessor :current
+    attr_reader :width, :height, :board, :stack, :start, :finish
 
     def initialize(w, h)
       @width = w
