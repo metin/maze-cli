@@ -25,7 +25,7 @@ RSpec.describe Maze::Cell do
       expect(cell == other_cell).to be false
     end
 
-  end  
+  end
 
   describe :neighbours do
     let(:board) { Maze::Board.new(10, 6) }
@@ -72,8 +72,8 @@ RSpec.describe Maze::Cell do
     end
     describe "when it is visited" do
       before { cell.visited = true }
-      it "displays as ·" do
-        expect(cell.display).to eq "·"
+      it "displays as ■" do
+        expect(cell.display).to eq "■"
       end
     end
   end

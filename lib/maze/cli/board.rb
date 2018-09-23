@@ -54,7 +54,7 @@ module Maze
 
     def print_cell(cell)
       if current && cell == current
-        "■"
+        "@"
       else
         cell.display
       end

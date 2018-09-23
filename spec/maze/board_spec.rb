@@ -25,10 +25,10 @@ RSpec.describe Maze::Board do
   end
 
   describe :print_cell do
-    it "marks current cell with ■" do
+    it "marks current cell with @" do
       cell = maze.cell(5, 5)
       maze.current = cell
-      expect(maze.print_cell(cell)).to eq("■")
+      expect(maze.print_cell(cell)).to eq("@")
     end
 
     it "marks any other cell with cells display method" do

@@ -18,7 +18,7 @@ module Maze
     def ==(other)
       return x && y && other && x == other.x && y == other.y
     end
-    
+
     def unvisited_neighbours
       neighbours.select{|n| n && !n.visited }
     end
@@ -31,7 +31,7 @@ module Maze
       if discarded
         "x"
       elsif visited
-        "·"
+        "■"
       else
         " "
       end
