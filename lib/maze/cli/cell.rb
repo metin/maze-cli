@@ -1,7 +1,7 @@
 module Maze
   class Cell
     attr_accessor :top, :bottom, :left, :right
-    attr_accessor :x, :y, :val, :board, :visited
+    attr_accessor :x, :y, :val, :board, :visited, :discarded
     def initialize(x, y, board = nil)
       @top = 1
       @bottom = 1
@@ -12,6 +12,7 @@ module Maze
       @y = y
       @board = board
       @visited = false
+      @discarded = false
     end
 
     def ==(other)
@@ -21,6 +22,11 @@ module Maze
     def unvisited_neighbours
       neighbours.select{|n| n && !n.visited }
     end
+
+    def to_s
+      "x: #{x} y: #{y} visited: #{visited} walls: [#{left},#{top}, #{right}, #{bottom}]"
+    end
+
 
     def neighbours
       [west, north, east, south]
@@ -42,7 +48,7 @@ module Maze
           when :east
             x > 0 ? board.cell(x - 1, y) : nil
           when :west
-            board.cell(x + 1, y )
+            board.cell(x + 1, y)
         end
       end
   end
