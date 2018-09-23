@@ -12,9 +12,9 @@ before_script:
 # Optional - Delete if not using `rubocop`
 rubocop:
   script:
-  - rubocop
+  - bundle exec rubocop
 
 rspec:
   script:
-  - rspec spec
+  - bundle exec rspec spec
 
