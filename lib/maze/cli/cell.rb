@@ -3,10 +3,10 @@ module Maze
     attr_accessor :top, :bottom, :left, :right
     attr_accessor :x, :y, :val, :board, :visited, :discarded
     def initialize(x, y, board = nil)
-      @top = 1
-      @bottom = 1
-      @left = 1
-      @right = 1
+      @top = :wall
+      @bottom = :wall
+      @left = :wall
+      @right = :wall
       @val = " "
       @x = x
       @y = y

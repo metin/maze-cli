@@ -39,13 +39,13 @@ module Maze
         0.upto(width - 1) do |x|
           print "|" if x == 0 #left wall for the maze
           print print_cell(board[x][y])
-          print board[x][y].right == 1 ? "|" : " "
+          print board[x][y].right == :wall ? "|" : " "
         end
         puts
 
         0.upto(width - 1) do |x|
           print " " if x == 0 # bottom left corner of each cell in first col
-          print board[x][y].bottom == 1 ? "─" : " "
+          print board[x][y].bottom == :wall ? "─" : " "
           print " " # bottom right corner of each cell
         end
         puts
@@ -86,18 +86,18 @@ module Maze
         neighbour = current.unvisited_neighbours.sample
         if neighbour
           case neighbour
-          when current.north
-            current.top = 0 if current.y != 0
-            neighbour.bottom = 0 if neighbour.y != height
-          when current.south
-            current.bottom = 0 if current.y != height
-            neighbour.top = 0 if neighbour.y != 0
-          when current.east
-            current.left = 0 if current.x != 0
-            neighbour.right = 0 if neighbour.x != width
-          when current.west
-            current.right = 0 if current.x != width
-            neighbour.left = 0 if neighbour.x != 0
+            when current.north
+              current.top = :cell if current.y != 0
+              neighbour.bottom = :cell if neighbour.y != height
+            when current.south
+              current.bottom = :cell if current.y != height
+              neighbour.top = :cell if neighbour.y != 0
+            when current.east
+              current.left = :cell if current.x != 0
+              neighbour.right = :cell if neighbour.x != width
+            when current.west
+              current.right = :cell if current.x != width
+              neighbour.left = :cell if neighbour.x != 0
           end
 
           neighbour.visited = true;
