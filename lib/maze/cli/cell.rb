@@ -1,13 +1,12 @@
 module Maze
   class Cell
     attr_accessor :top, :bottom, :left, :right
-    attr_accessor :x, :y, :val, :board, :visited, :discarded
+    attr_accessor :x, :y, :board, :visited, :discarded
     def initialize(x, y, board = nil)
       @top = :wall
       @bottom = :wall
       @left = :wall
       @right = :wall
-      @val = " "
       @x = x
       @y = y
       @board = board

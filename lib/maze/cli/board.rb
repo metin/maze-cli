@@ -105,7 +105,6 @@ module Maze
           @current = neighbour
           backtrack
         else
-          current.val = "x"
           current.discarded = true
           @current = stack.pop
           backtrack
