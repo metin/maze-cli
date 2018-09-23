@@ -11,17 +11,6 @@ module Maze
       @stack = []
     end
 
-    def generate
-      0.upto(width - 1) do |x|
-          board << []
-          0.upto(height - 1) do |y|
-            board[x][y] = Cell.new(x, y, self)
-          end
-      end
-    end
-    private :generate
-
-
     def display
       puts "start: #{start.x}, #{start.y}" if start
       # Each cell is printed as 9 places on console
@@ -77,6 +66,15 @@ module Maze
     end
 
     private
+      def generate
+        0.upto(width - 1) do |x|
+            board << []
+            0.upto(height - 1) do |y|
+              board[x][y] = Cell.new(x, y, self)
+            end
+        end
+      end
+
       def backtrack
         return if !current
 
