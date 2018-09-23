@@ -43,4 +43,24 @@ RSpec.describe Maze::Cell do
     end
   end
 
+  describe :unvisited_neighbours do
+    let(:board) { Maze::Board.new(10, 6) }
+    let(:cell) { Maze::Cell.new(2 , 2, board) }
+
+    describe "when none of neigbours are not visited" do
+      it "has 4 unvisited neighbours" do
+        expect(cell.unvisited_neighbours.size).to eq 4
+      end
+    end
+
+    describe "when north neigbours is visited" do
+      before do
+        cell.north.visited = true
+      end
+      it "has 3 unvisited neighbours" do
+        expect(cell.unvisited_neighbours.size).to eq 3
+      end
+    end
+  end
+
 end
