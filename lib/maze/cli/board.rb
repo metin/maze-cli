@@ -2,6 +2,7 @@ module Maze
   class Board
     attr_accessor :current
     attr_reader :width, :height, :board, :stack, :start, :finish
+    attr_accessor :specified_x, :specified_y
 
     def initialize(w, h)
       @width = w
@@ -13,6 +14,7 @@ module Maze
 
     def display
       puts "start: #{start.x}, #{start.y}" if start
+      puts "finish: #{finish.x}, #{finish.y}" if finish
       # Each cell is printed as 9 places on console
       # b─b
       # |■|
@@ -111,8 +113,16 @@ module Maze
       end
 
       def at_the_edge?
-        current.x.zero? || current.y.zero? ||
-          current.x == width - 1 || current.y == height - 1
+        # This is to give player to set some harder
+        # locations to make maze more complicated
+        if specified_x
+          current.x == specified_x
+        elsif specified_y
+          current.y == specified_y
+        else
+          current.x.zero? || current.y.zero? ||
+            current.x == width - 1 || current.y == height - 1
+        end
       end
     end
 end

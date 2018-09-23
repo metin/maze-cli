@@ -55,6 +55,14 @@ RSpec.describe Maze::Board do
       maze.solve(start)
       expect(maze.solved?).to be true
     end
+
+    it "is solved at the specified y locations" do
+      start = maze.cell(2,1)
+      maze.specified_x = 39
+      maze.solve(start)
+      maze.display
+      expect(maze.finish.x).to eq 39
+    end
   end
 
 end
