@@ -1,0 +1,91 @@
+ #!/usr/bin/env ruby
+
+require 'optparse'
+require 'ostruct'
+require 'pp'
+require 'maze/cli'
+
+class OptparseExample
+
+  def self.parse(args)
+    options = OpenStruct.new
+    options.width = 20
+    options.height = 10
+    options.start = OpenStruct.new
+    options.finish = OpenStruct.new
+    options.start.x = 10
+    options.start.y = 5
+
+    opt_parser = OptionParser.new do |opts|
+      opts.banner = "Usage: maze-cli [options]"
+
+      opts.separator ""
+      opts.separator "Specific options:"
+
+      opts.on("-w", "--width WIDTH",  "Set width of the maze") do |width|
+        options.width = width.to_i
+      end
+
+      opts.on("-h", "--height HEIGHT", "Set height of the maze") do |height|
+        options.height = height.to_i
+      end
+
+      opts.on("-s", "--start START", "Set starting point in X:Y format") do |s|
+        options.start.x, options.start.y = *(s.split(":").map(&:to_i))
+      end
+
+      opts.on("--finish-x","--finish-x FX", "Set specific finishing x coordinate") do |fx|
+        options.finish.x = fx.to_i
+      end
+
+      opts.on("--finish-y", "--finish-y FY", "Set specific finishing y coordinate") do |fy|
+        options.finish.y = fy.to_i
+      end
+
+      opts.on("--help", "--help", "Prints this help") do
+        puts opts
+        exit
+      end
+    end
+
+    opt_parser.parse!(args)
+    options
+  end  # parse()
+
+end  # class OptparseExample
+
+options = OptparseExample.parse(ARGV)
+
+if options.start.x > options.width - 1 || options.start.x < 0
+  puts "Starting X coordinate should be between 0 and  #{options.width - 1}"
+  exit
+end
+
+if options.start.y > options.height - 1 || options.start.y < 0
+  puts "Starting Y coordinate should be between 0 and #{options.height - 1}"
+  exit
+end
+
+if options.finish.x && (options.finish.x > options.width - 1 || options.finish.x < 0)
+  puts "Finishing X coordinate should be between 0 and  #{options.width - 1}"
+  exit
+end
+
+if options.finish.y && (options.finish.y > options.height - 1 || options.finish.y < 0)
+  puts "Finishing Y coordinate should be between 0 and #{options.height - 1}"
+  exit
+end
+
+
+maze = Maze::Board.new(options.width, options.height)
+cell = maze.cell(options.start.x, options.start.y)
+
+if options.finish.x
+  maze.specified_x = options.finish.x
+elsif options.finish.y
+  maze.specified_y = options.finish.y
+end
+
+maze.solve(cell)
+maze.display
+

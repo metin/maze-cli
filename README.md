@@ -1,28 +1,47 @@
 # Maze::Cli
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/maze/cli`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+This is a gem that generates random mazes using backtrack algorith.
+It allows picking any cell in the maze and generates a maze from tahat point to the edge of the maze.
 
 ## Installation
 
-Add this line to your application's Gemfile:
+Install from source
 
 ```ruby
-gem 'maze-cli'
+rake install
 ```
 
 And then execute:
 
-    $ bundle
+    $ maze-cli --help
 
-Or install it yourself as:
-
-    $ gem install maze-cli
 
 ## Usage
 
-TODO: Write usage instructions here
+    $ maze-cli -w 20 -h 15 -x5 -y 10
+
+## Example usage
+
+To generate a maze of `15X6`, and start solving at `1:1` and make sure it finishes at `X:14`
+
+```
+$ maze-cli --width 15 --height 6 --start 1:1 --finish-x 14
+start: 1, 1
+finish: 14, 0
+ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─
+|■ ■ ■ ■| | | | | |■ ■|■ ■ ■ @|
+   ─ ─   ─ ─ ─ ─ ─       ─ ─ ─
+|■ ■| |■| | | | |■ ■|■ ■| | | |
+ ─ ─ ─   ─ ─ ─ ─   ─ ─ ─ ─ ─ ─
+|■ ■| |■ ■ ■| | |■ ■|■ ■| | | |
+     ─ ─ ─   ─ ─ ─       ─ ─ ─
+|■|■ ■ ■ ■ ■| |■ ■|■ ■|■| | | |
+   ─ ─ ─ ─ ─ ─     ─ ─   ─ ─ ─
+|■ ■| |■ ■| | |■|■|■ ■ ■| | | |
+ ─   ─     ─ ─       ─ ─ ─ ─ ─
+| |■ ■ ■|■ ■ ■ ■|■ ■| | | | | |
+ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─
+ ```
 
 ## Development
 
