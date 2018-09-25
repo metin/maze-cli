@@ -24,21 +24,21 @@ module Maze
         if y.zero?
           0.upto(width - 1) do |x|
             print ' ' if x.zero?
-            print '─ '
+            print '─ '.pale
           end
           puts
         end
         # Print left right edges and the cell
         0.upto(width - 1) do |x|
-          print '|' if x.zero? # left wall for the maze
+          print '|'.pale if x.zero? # left wall for the maze
           print print_cell(board[x][y])
-          print board[x][y].right == :wall ? '|' : ' '
+          print board[x][y].right == :wall ? '|'.pale : ' '
         end
         puts
         #print bottom edge
         0.upto(width - 1) do |x|
           print ' ' if x.zero? # bottom left corner of each cell in first col
-          print board[x][y].bottom == :wall ? '─' : ' '
+          print board[x][y].bottom == :wall ? '─'.pale : ' '
           print ' ' # bottom right corner of each cell
         end
         puts
@@ -46,8 +46,10 @@ module Maze
     end
 
     def print_cell(cell)
-      if current && cell == current
-        '@'
+      if cell == start
+        'S'.greenish
+      elsif current && cell == current
+        '@'.green
       else
         cell.display
       end

@@ -28,9 +28,9 @@ module Maze
 
     def display
       if discarded
-        'x'
+        'x'.red
       elsif visited
-        '■'
+        '■'.blue
       else
         ' '
       end
