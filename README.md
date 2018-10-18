@@ -1,6 +1,6 @@
 # Maze::Cli
 
-This is a gem that generates random mazes using backtrack algorith.
+This is a gem that generates random mazes using backtrack algorithm.
 It allows picking any cell in the maze and generates a maze from tahat point to the edge of the maze.
 
 ## Installation
